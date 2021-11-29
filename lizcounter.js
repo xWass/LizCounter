@@ -15,6 +15,7 @@ client.once("ready", async function () {
 client.on('message', async (message) => {
     if (message.channel.type === "dm") return;
     if (message.guild.id !== "739572662728261642") return;
+	if (message.channel.id !== "908142027521282078") return;
 	const counts = client.channels.cache.get("908142027521282078");
     let guildid = message.guild.id
     let query = `SELECT * FROM data WHERE guildid = ?`;
