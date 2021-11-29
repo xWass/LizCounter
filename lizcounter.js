@@ -51,6 +51,7 @@ client.on('message', async (message) => {
                 return;
             }
             db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
+		message.react("✅")
             return;
         }
     })
