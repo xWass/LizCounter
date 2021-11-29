@@ -9,7 +9,7 @@
   "author": "xWass#0001",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "12.5.3",
     "sqlite3": "^5.0.2"
   }
 }
