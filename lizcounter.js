@@ -48,10 +48,11 @@ client.on('message', async (message) => {
             if (message.content != numUpdate) {
                 db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
                 message.reply(fail)
+		    message.react("<:redtick:914724454721024010>")
                 return;
             }
             db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
-		message.react("✅")
+		message.react("<:greentick:914724454712635483>")
             return;
         }
     })
