@@ -53,20 +53,20 @@ client.on('message', async (message) => {
                     await embed.setDescription(`**${message.author} ruined the counting!** \n**Content of message: "${message.content}"**`)
                     message.channel.send(embed)
                     message.react("<:redtick:914724454721024010>")
-                    db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
-                    db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
+                    await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
+                    await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
                     return;    
                 }
                 await embed.setDescription(`**${message.author} ruined the counting!** \n**User counted twice in a row!** \n**Content of message: "${message.content}"**`)
                 message.channel.send(embed)
                 message.react("<:redtick:914724454721024010>")
-                db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
-                db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
+                await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
+                await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
                 return;
             }
             if (message.content != numUpdate) {
-                db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
-                db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
+                await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
+                await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
                 await embed.setDescription(`**${message.author} ruined the counting!** \n**User counted twice in a row!** \n**Content of message: "${message.content}"**`)
                 message.channel.send(embed)
                 message.react("<:redtick:914724454721024010>")
@@ -76,13 +76,13 @@ client.on('message', async (message) => {
         if (randone === randtwo) {
             let a = row.number + randupdate
             await embed.setDescription(`You just skipped ${randupdate} numbers! Start from ${a}`)
-            db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [a, guildid])
-            db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
+            await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [a, guildid])
+            await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
             message.react("<:greentick:914724454712635483>")
             return;
         }
-        db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
-        db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
+        await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
+        await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
         message.react("<:greentick:914724454712635483>")
         return;
 
