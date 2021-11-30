@@ -79,13 +79,13 @@ client.on('message', async (message) => {
             db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
             message.react("<:greentick:914724454712635483>")
             return;
-        }
-        }
-
-        db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
+        } else {
+		        db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
         db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
         message.react("<:greentick:914724454712635483>")
         return;
+	}
+        }
 
     })
 })
