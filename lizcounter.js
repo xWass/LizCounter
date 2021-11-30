@@ -72,8 +72,7 @@ client.on('message', async (message) => {
                 message.react("<:redtick:914724454721024010>")
                 return;
             }
-        }
-        if (randone === randtwo) {
+		        if (randone === randtwo) {
             let a = row.number + randupdate
             await embed.setDescription(`You just skipped ${randupdate} numbers! Start from ${a}`)
             db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [a, guildid])
@@ -81,6 +80,8 @@ client.on('message', async (message) => {
             message.react("<:greentick:914724454712635483>")
             return;
         }
+        }
+
         db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
         db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
         message.react("<:greentick:914724454712635483>")
