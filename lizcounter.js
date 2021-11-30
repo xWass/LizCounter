@@ -14,9 +14,9 @@ client.once("ready", async function () {
 
 client.on('message', async (message) => {
     if (message.channel.type === "dm") return;
-    if (message.guild.id !== "840225836028395520") return;
-	const counts = client.channels.cache.get("914660789258956840");
-	if (message.author.bot) return;
+    if (message.guild.id !== "739572662728261642") return;
+	if (message.channel.id !== "908142027521282078") return;
+	const counts = client.channels.cache.get("908142027521282078");
     let guildid = message.guild.id
     let query = `SELECT * FROM data WHERE guildid = ?`;
     let db = new sqlite.Database('./num.db', sqlite.OPEN_READWRITE);
@@ -72,20 +72,19 @@ client.on('message', async (message) => {
                 message.react("<:redtick:914724454721024010>")
                 return;
             }
-		        if (randone === randtwo) {
+        }
+        if (randone === randtwo) {
             let a = row.number + randupdate
             await embed.setDescription(`You just skipped ${randupdate} numbers! Start from ${a}`)
             db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [a, guildid])
             db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
             message.react("<:greentick:914724454712635483>")
             return;
-        } else {
-		        db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
+        }
+        db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
         db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
         message.react("<:greentick:914724454712635483>")
         return;
-	}
-        }
 
     })
 })
