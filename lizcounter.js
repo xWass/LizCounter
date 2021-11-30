@@ -16,6 +16,7 @@ client.on('message', async (message) => {
     if (message.channel.type === "dm") return;
     if (message.guild.id !== "840225836028395520") return;
 	const counts = client.channels.cache.get("914660789258956840");
+	if (message.author.bot) return;
     let guildid = message.guild.id
     let query = `SELECT * FROM data WHERE guildid = ?`;
     let db = new sqlite.Database('./num.db', sqlite.OPEN_READWRITE);
