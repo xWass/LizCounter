@@ -26,9 +26,6 @@ client.on('message', async (message) => {
             console.log(err);
             return;
         }
-        let randone = Math.floor(Math.random() * (1 - 50 + 1)) + 50;
-        let randtwo = Math.floor(Math.random() * (1 - 50 + 1)) + 50;
-        let randupdate = Math.floor(Math.random() * (1 - 50 + 1)) + 50;
         let auth = message.author.id
         if (row === undefined) {
 			let insertdata = db.prepare(`INSERT INTO data VALUES(?,?,?)`);
@@ -68,19 +65,11 @@ client.on('message', async (message) => {
             if (message.content != numUpdate) {
                 await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [0, guildid])
                 await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [0, guildid])
-                await embed.setDescription(`**${message.author} ruined the counting!** \n**User counted twice in a row!** \n**Content of message: "${message.content}"**`)
+                await embed.setDescription(`**${message.author} ruined the counting!** \n**Content of message: "${message.content}"**`)
                 message.channel.send(embed)
                 message.react("<:redtick:914724454721024010>")
                 return;
             }
-        }
-        if (randone === randtwo) {
-            let a = row.number + randupdate
-            await embed.setDescription(`You just skipped ${randupdate} numbers! Start from ${a}`)
-            await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [a, guildid])
-            await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
-            message.react("<:greentick:914724454712635483>")
-            return;
         }
         await db.run(`UPDATE data SET number = ? WHERE guildid = ?`, [numUpdate, guildid])
         await db.run(`UPDATE data SET authorid = ? WHERE guildid = ?`, [auth, guildid])
